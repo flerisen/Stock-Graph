@@ -30,7 +30,7 @@ if choose_stock:
 
     chart_data = pd.DataFrame({
         "Stock": [choose_stock] * len(df),
-        "Price": df["Close"][choose_stock],
+        "Price": df["Close"][choose_stock].round(2),
         "Volume": df["Volume"][choose_stock],
         "Date": df["Date"].dt.date
     })
@@ -44,7 +44,7 @@ if choose_stock:
 
     stock_randomizer = st.slider("Stock randomness (%)", 0, 100, 0)
 
-    chart_data["Random Price"] = chart_data["Price"].round(2)
+    chart_data["Random Price"] = chart_data["Price"]
     chart_data["Random Volume"] = chart_data["Volume"]
 
     if stock_randomizer != 0:
