@@ -45,7 +45,8 @@ if choose_stock:
     label="Export Global Stock Data as CSV",
     data=csv,
     file_name=f'{choose_stock}_global_stock_data.csv',
-    mime='text/csv'
+    mime='text/csv',
+    key="download global"
     )
     
     st.subheader("Stock Randomness Graph")
@@ -76,7 +77,8 @@ if choose_stock:
     label="Export Stock Randomness Data as CSV",
     data=csv_random,
     file_name=f'{choose_stock}_stock_randomness_data.csv',
-    mime='text/csv'
+    mime='text/csv',
+    key="download random"
     )
 
 
@@ -168,6 +170,7 @@ st.download_button(
     label="Export Draggable & Random Stock Data as CSV",
     data=csv_draggable,
     file_name=f'{choose_stock}_draggable_random_stock_data.csv',
-    mime='text/csv'
+    mime='text/csv',
+    key="download draggable line"
 )
 
