@@ -71,6 +71,15 @@ if choose_stock:
     st.line_chart(chart_data.set_index("Date")["Random Price"])
     st.dataframe(chart_data[["Stock", "Random Price", "Random Volume", "Date"]])
 
+    csv_random = chart_data[["Stock", "Random Price", "Random Volume", "Date"]].to_csv(index=False).encode('utf-8')
+    st.download_button(
+    label="Export Stock Randomness Data as CSV",
+    data=csv_random,
+    file_name=f'{choose_stock}_stock_randomness_data.csv',
+    mime='text/csv'
+    )
+
+
 #ChatGPT Section for draggable charts
 
 st.subheader("Draggable & Random Stock Graph")
@@ -153,3 +162,12 @@ draggable_line = draggable_line.drop(columns=["Random Price_updated", "Random Vo
 
 # Show the updated daily data with smooth prices and volumes
 st.dataframe(draggable_line[["Stock", "Random Price", "Random Volume", "Date"]])
+
+csv_draggable = draggable_line[["Stock", "Random Price", "Random Volume", "Date"]].to_csv(index=False).encode('utf-8')
+st.download_button(
+    label="Export Draggable & Random Stock Data as CSV",
+    data=csv_draggable,
+    file_name=f'{choose_stock}_draggable_random_stock_data.csv',
+    mime='text/csv'
+)
+
