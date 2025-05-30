@@ -99,17 +99,44 @@ if 'Year' not in updated_yearly_data.columns and 'index' in updated_yearly_data.
 
 updated_yearly_data["Year"] = updated_yearly_data["Year"].astype(int)
 
-# Merge updated yearly price and volume back into the daily data to update accordingly
+# Merge updated yearly price and volume back into the daily data
 draggable_line = draggable_line.merge(
     updated_yearly_data[["Year", "Random Price", "Random Volume"]],
     on="Year",
     suffixes=("", "_updated")
 )
 
-# Replace daily Random Price and Random Volume with yearly updated values
-draggable_line["Random Price"] = draggable_line["Random Price_updated"].round(2)
+# Smoothly interpolate daily Random Price between years
+
+# Create dict of year to updated Random Price
+year_price_dict = updated_yearly_data.set_index('Year')['Random Price'].to_dict()
+years_sorted = sorted(year_price_dict.keys())
+
+interpolated_prices = []
+
+for i, year in enumerate(years_sorted):
+    price_start = year_price_dict[year]
+    price_end = year_price_dict[years_sorted[i+1]] if i+1 < len(years_sorted) else price_start
+
+    mask = draggable_line['Year'] == year
+    days_in_year = mask.sum()
+
+    if days_in_year > 1:
+        interpolated = np.linspace(price_start, price_end, days_in_year)
+    else:
+        interpolated = np.array([price_start])
+
+    interpolated_prices.extend(interpolated)
+
+# Assign the interpolated prices back and round to 2 decimals
+draggable_line.loc[:, 'Random Price'] = interpolated_prices
+draggable_line['Random Price'] = draggable_line['Random Price'].round(2)
+
+# For volume, keep updated yearly values (no interpolation here)
 draggable_line["Random Volume"] = draggable_line["Random Volume_updated"]
+
+# Drop helper columns
 draggable_line = draggable_line.drop(columns=["Random Price_updated", "Random Volume_updated"])
 
-# Show the updated daily data with adjusted prices and volumes
+# Show the updated daily data with smooth prices
 st.dataframe(draggable_line[["Stock", "Random Price", "Random Volume", "Date"]])
