@@ -40,6 +40,14 @@ if choose_stock:
     st.line_chart(chart_data.set_index("Date")["Price"])
     st.dataframe(chart_data[["Stock", "Price", "Volume", "Date"]])
 
+    csv = chart_data[["Stock", "Price", "Volume", "Date"]].to_csv(index=False).encode('utf-8')
+    st.download_button(
+    label="Export Global Stock Data as CSV",
+    data=csv,
+    file_name=f'{choose_stock}_global_stock_data.csv',
+    mime='text/csv'
+    )
+    
     st.subheader("Stock Randomness Graph")
 
     stock_randomizer = st.slider("Stock randomness (%)", 0, 100, 0)
