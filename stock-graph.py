@@ -44,7 +44,7 @@ if choose_stock:
 
     stock_randomizer = st.slider("Stock randomness (%)", 0, 100, 0)
 
-    chart_data["Random Price"] = chart_data["Price"]
+    chart_data["Random Price"] = chart_data["Price"].round(2)
     chart_data["Random Volume"] = chart_data["Volume"]
 
     if stock_randomizer != 0:
@@ -54,7 +54,7 @@ if choose_stock:
 
         chart_data["Random Price"] = (
             chart_data["Price"] * price_multiplier * noise
-        ).astype(int)
+        ).round(2)
 
         chart_data["Random Volume"] = (
             chart_data["Volume"] * (1 + stock_randomizer / 200)
