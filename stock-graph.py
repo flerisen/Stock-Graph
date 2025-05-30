@@ -106,37 +106,42 @@ draggable_line = draggable_line.merge(
     suffixes=("", "_updated")
 )
 
-# Smoothly interpolate daily Random Price between years
-
-# Create dict of year to updated Random Price
+# Create dicts for year to updated values
 year_price_dict = updated_yearly_data.set_index('Year')['Random Price'].to_dict()
+year_volume_dict = updated_yearly_data.set_index('Year')['Random Volume'].to_dict()
 years_sorted = sorted(year_price_dict.keys())
 
 interpolated_prices = []
+interpolated_volumes = []
 
 for i, year in enumerate(years_sorted):
     price_start = year_price_dict[year]
     price_end = year_price_dict[years_sorted[i+1]] if i+1 < len(years_sorted) else price_start
 
+    volume_start = year_volume_dict[year]
+    volume_end = year_volume_dict[years_sorted[i+1]] if i+1 < len(years_sorted) else volume_start
+
     mask = draggable_line['Year'] == year
     days_in_year = mask.sum()
 
     if days_in_year > 1:
-        interpolated = np.linspace(price_start, price_end, days_in_year)
+        interpolated_price = np.linspace(price_start, price_end, days_in_year)
+        interpolated_volume = np.linspace(volume_start, volume_end, days_in_year)
     else:
-        interpolated = np.array([price_start])
+        interpolated_price = np.array([price_start])
+        interpolated_volume = np.array([volume_start])
 
-    interpolated_prices.extend(interpolated)
+    interpolated_prices.extend(interpolated_price)
+    interpolated_volumes.extend(interpolated_volume)
 
-# Assign the interpolated prices back and round to 2 decimals
+# Assign the interpolated values back and round
 draggable_line.loc[:, 'Random Price'] = interpolated_prices
+draggable_line.loc[:, 'Random Volume'] = interpolated_volumes
 draggable_line['Random Price'] = draggable_line['Random Price'].round(2)
-
-# For volume, keep updated yearly values (no interpolation here)
-draggable_line["Random Volume"] = draggable_line["Random Volume_updated"]
+draggable_line['Random Volume'] = draggable_line['Random Volume'].round(2)
 
 # Drop helper columns
 draggable_line = draggable_line.drop(columns=["Random Price_updated", "Random Volume_updated"])
 
-# Show the updated daily data with smooth prices
+# Show the updated daily data with smooth prices and volumes
 st.dataframe(draggable_line[["Stock", "Random Price", "Random Volume", "Date"]])
