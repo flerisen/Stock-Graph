@@ -40,14 +40,31 @@ if choose_stock:
     st.line_chart(chart_data.set_index("Date")["Price"])
     st.dataframe(chart_data[["Stock", "Price", "Volume", "Date"]])
 
-    csv = chart_data[["Stock", "Price", "Volume", "Date"]].to_csv(index=False).encode('utf-8')
+    challenger_id_global = st.number_input("Add challenger_id for Global Stock Data", min_value=0, step=1, key="challenger_global")
+
+    new_row_global = pd.DataFrame({
+        "Stock": [choose_stock],
+        "Price": [None],
+        "Volume": [None],
+        "Date": [None],
+        "challenger_id": [challenger_id_global]
+    })
+
+    if "challenger_id" not in chart_data.columns:
+        chart_data["challenger_id"] = None
+
+    export_df_global = pd.concat([new_row_global, chart_data], ignore_index=True)
+
+    csv_global = export_df_global.to_csv(index=False).encode('utf-8')
+
     st.download_button(
     label="Export Global Stock Data as CSV",
-    data=csv,
+    data=csv_global,
     file_name=f'{choose_stock}_global_stock_data.csv',
     mime='text/csv',
-    key="download global"
-    )
+    key='download_global'
+)
+
     
     st.subheader("Stock Randomness Graph")
 
