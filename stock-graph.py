@@ -107,7 +107,7 @@ draggable_line = draggable_line.merge(
 )
 
 # Replace daily Random Price and Random Volume with yearly updated values
-draggable_line["Random Price"] = draggable_line["Random Price_updated"]
+draggable_line["Random Price"] = draggable_line["Random Price_updated"].round(2)
 draggable_line["Random Volume"] = draggable_line["Random Volume_updated"]
 draggable_line = draggable_line.drop(columns=["Random Price_updated", "Random Volume_updated"])
 
