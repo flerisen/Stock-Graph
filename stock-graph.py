@@ -40,7 +40,7 @@ if choose_stock:
     st.line_chart(chart_data.set_index("Date")["Price"])
     st.dataframe(chart_data[["Stock", "Price", "Volume", "Date"]])
 
-    challenger_id_global = st.number_input("Add challenger_id for Global Stock Data", min_value=0, step=1, key="challenger_global")
+    challenger_id_global = st.number_input("Add a challenger_id for Global Stock Data", min_value=0, step=1, key="challenger_global")
 
     new_row_global = pd.DataFrame({
         "Stock": [choose_stock],
