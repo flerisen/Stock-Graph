@@ -29,7 +29,7 @@ choose_stock = st.selectbox("Choose a stock:", [
 if choose_stock:
 
     chart_data = pd.DataFrame({
-        "Challenge_id": st.number_input("Input a challenge_id", value=0)
+        "Challenge_id": st.number_input("Input a challenge_id", value=0),
         "Stock": [choose_stock] * len(df),
         "Price": df["Close"][choose_stock].round(2),
         "Volume": df["Volume"][choose_stock],
