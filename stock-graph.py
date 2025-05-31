@@ -40,38 +40,14 @@ if choose_stock:
     st.line_chart(chart_data.set_index("Date")["Price"])
     st.dataframe(chart_data[["Stock", "Price", "Volume", "Date"]])
 
-    challenger_id_global = st.number_input("Add a challenger_id for Global Stock Data", min_value=0, step=1, key="challenger_global")
-
     new_row_global = pd.DataFrame({
         "Stock": [choose_stock],
         "Price": [None],
         "Volume": [None],
-        "Date": [None],
-        "challenger_id": [challenger_id_global]
+        "Date": [None]
     })
-
-    if "challenger_id" not in chart_data.columns:
-        chart_data["challenger_id"] = None
-
-    export_df_global = pd.concat([new_row_global, chart_data], ignore_index=True)
-
-    csv_global = export_df_global.to_csv(index=False).encode('utf-8')
-
-    st.download_button(
-    label="Export Global Stock Data as CSV",
-    data=csv_global,
-    file_name=f'{choose_stock}_global_stock_data.csv',
-    mime='text/csv',
-    key='download_global'
-)
-
     
-    st.subheader("Stock Randomness Graph")
-
     stock_randomizer = st.slider("Stock randomness (%)", 0, 100, 0)
-
-    chart_data["Random Price"] = chart_data["Price"]
-    chart_data["Random Volume"] = chart_data["Volume"]
 
     if stock_randomizer != 0:
         price_multiplier = 1 + (stock_randomizer / 100)
@@ -85,19 +61,6 @@ if choose_stock:
         chart_data["Random Volume"] = (
             chart_data["Volume"] * (1 + stock_randomizer / 200)
         ).astype(int)
-
-    st.line_chart(chart_data.set_index("Date")["Random Price"])
-    st.dataframe(chart_data[["Stock", "Random Price", "Random Volume", "Date"]])
-
-    csv_random = chart_data[["Stock", "Random Price", "Random Volume", "Date"]].to_csv(index=False).encode('utf-8')
-    st.download_button(
-    label="Export Stock Randomness Data as CSV",
-    data=csv_random,
-    file_name=f'{choose_stock}_stock_randomness_data.csv',
-    mime='text/csv',
-    key="download random"
-    )
-
 
 #ChatGPT Section for draggable charts
 
@@ -181,13 +144,3 @@ draggable_line = draggable_line.drop(columns=["Random Price_updated", "Random Vo
 
 # Show the updated daily data with smooth prices and volumes
 st.dataframe(draggable_line[["Stock", "Random Price", "Random Volume", "Date"]])
-
-csv_draggable = draggable_line[["Stock", "Random Price", "Random Volume", "Date"]].to_csv(index=False).encode('utf-8')
-st.download_button(
-    label="Export Draggable & Random Stock Data as CSV",
-    data=csv_draggable,
-    file_name=f'{choose_stock}_draggable_random_stock_data.csv',
-    mime='text/csv',
-    key="download draggable line"
-)
-
