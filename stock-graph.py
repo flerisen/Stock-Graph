@@ -29,20 +29,20 @@ choose_stock = st.selectbox("Choose a stock:", [
 if choose_stock:
 
     chart_data = pd.DataFrame({
-        "Challenge_id": st.number_input("Input a challenge_id", value=0),
+        "challenge_id": st.number_input("Input a challenge_id", value=0),
         "Stock": [choose_stock] * len(df),
         "Price": df["Close"][choose_stock].round(2),
         "Volume": df["Volume"][choose_stock],
         "Date": df["Date"].dt.date
     })
 
-    chart_data["Challenge_id"] = chart_data["Challenge_id"].astype(str)
-    chart_data.loc[1:, "Challenge_id"] = ""
+    chart_data["challenge_id"] = chart_data["challenge_id"].astype(str)
+    chart_data.loc[1:, "challenge_id"] = ""
     
     st.subheader("Global Stock Graph 1-1")
 
     st.line_chart(chart_data.set_index("Date")["Price"])
-    st.dataframe(chart_data[["Challenge_id","Stock", "Price", "Volume", "Date"]])
+    st.dataframe(chart_data[["challenge_id","Stock", "Price", "Volume", "Date"]])
 
     new_row_global = pd.DataFrame({
         "Stock": [choose_stock],
@@ -148,4 +148,4 @@ draggable_line['Random Volume'] = draggable_line['Random Volume'].round(2)
 draggable_line = draggable_line.drop(columns=["Random Price_updated", "Random Volume_updated"])
 
 # Show the updated daily data with smooth prices and volumes
-st.dataframe(draggable_line[["Challenge_id","Stock", "Random Price", "Random Volume", "Date"]])
+st.dataframe(draggable_line[["challenge_id","Stock", "Random Price", "Random Volume", "Date"]])
