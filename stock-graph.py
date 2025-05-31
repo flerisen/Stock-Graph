@@ -46,22 +46,7 @@ if choose_stock:
         "Volume": [None],
         "Date": [None]
     })
- """  
-    stock_randomizer = st.slider("Stock randomness (%)", 1, 100, 1)
 
-    if stock_randomizer != 0:
-        price_multiplier = 1 + (stock_randomizer / 100)
-        np.random.seed(42)
-        noise = np.random.normal(loc=1.0, scale=0.01, size=len(chart_data))
-
-        chart_data["Random Price"] = (
-            chart_data["Price"] * price_multiplier * noise
-        ).round(2)
-
-        chart_data["Random Volume"] = (
-            chart_data["Volume"] * (1 + stock_randomizer / 200)
-        ).astype(int)
-"""
 #ChatGPT Section for draggable charts
 
 st.subheader("Draggable & Random Stock Graph")
