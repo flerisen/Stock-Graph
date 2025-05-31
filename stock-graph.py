@@ -36,6 +36,9 @@ if choose_stock:
         "Date": df["Date"].dt.date
     })
 
+    chart_data["Challenge_id"] = chart_data["Challenge_id"].astype(str)
+    chart_data.loc[1:, "Challenge_id"] = ""
+    
     st.subheader("Global Stock Graph 1-1")
 
     st.line_chart(chart_data.set_index("Date")["Price"])
