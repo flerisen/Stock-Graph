@@ -29,6 +29,7 @@ choose_stock = st.selectbox("Choose a stock:", [
 if choose_stock:
 
     chart_data = pd.DataFrame({
+        "challenge_id": st.number_input("Input a challenge_id", value=0),
         "Stock": [choose_stock] * len(df),
         "Price": df["Close"][choose_stock].round(2),
         "Volume": df["Volume"][choose_stock],
@@ -38,7 +39,7 @@ if choose_stock:
     st.subheader("Global Stock Graph 1-1")
 
     st.line_chart(chart_data.set_index("Date")["Price"])
-    st.dataframe(chart_data[["Stock", "Price", "Volume", "Date"]])
+    st.dataframe(chart_data[["challenge_id","Stock", "Price", "Volume", "Date"]])
 
     new_row_global = pd.DataFrame({
         "Stock": [choose_stock],
