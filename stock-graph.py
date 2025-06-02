@@ -8,23 +8,49 @@ from draggable_charts import line_chart
 st.title("Global Stock Market Price History")
 
 df = yf.download([
-    "BRK-A", "SE", "MCD", "NVR", "ALB", "AMZN", "SHOP", "GOOGL", "GOOG",
-    "MCHP", "ILMN", "ISRG", "ADI", "AZO", "FIS", "LRCX", "MDLA", "NOW",
-    "RMD", "SNPS", "VRTX", "XLNX", "YUM", "ZBRA", "ZS", "NFLX", "TSLA",
-    "AMGN", "BIIB", "COST", "CSX", "DE", "DHR", "FISV", "GILD", "HCA",
-    "HOLX", "KHC", "KSU", "LHX", "MCK", "MKTX", "MNST", "MRVL", "MU",
-    "NXPI", "PAYX", "PCAR", "PYPL", "REGN", "SBUX", "SNOW", "SPLK",
-    "TFX", "VRSK", "WBA", "ZTS"], start="2020-01-01", end="2025-01-01")
+    "AAPL", "MSFT", "AMZN", "GOOGL", "GOOG", "META", "BRK.B", "TSLA", "NVDA", "JPM",
+    "JNJ", "V", "UNH", "HD", "PG", "MA", "BAC", "XOM", "DIS", "PFE",
+    "KO", "PEP", "CSCO", "VZ", "ADBE", "CMCSA", "NFLX", "INTC", "T", "MRK",
+    "WMT", "CVX", "ABT", "CRM", "NKE", "LLY", "ACN", "AVGO", "MDT", "COST",
+    "ABBV", "TMO", "DHR", "MCD", "TXN", "NEE", "PM", "UNP", "LIN", "ORCL",
+    "HON", "UPS", "MS", "AMGN", "IBM", "QCOM", "LOW", "RTX", "INTU", "BA",
+    "SBUX", "CAT", "GS", "BLK", "ISRG", "MDLZ", "AMT", "GE", "NOW", "SPGI",
+    "LMT", "DE", "PLD", "CVS", "BKNG", "AXP", "GILD", "ADI", "ZTS", "SYK",
+    "CI", "MO", "ADP", "TGT", "USB", "CB", "BDX", "C", "PNC", "SCHW",
+    "DUK", "SO", "MMC", "TJX", "APD", "FIS", "CL", "ICE", "GM", "ETN",
+    "EL", "ECL", "ITW", "ADI", "VRTX", "CSX", "NSC", "SHW", "EMR", "AON",
+    "GD", "FDX", "ADI", "EW", "PSA", "HUM", "ADSK", "ROP", "AIG", "COF",
+    "TFC", "NOC", "KLAC", "MCO", "CDNS", "FISV", "HCA", "MAR", "IDXX", "ROST",
+    "CTSH", "KMB", "WELL", "EXC", "STZ", "TRV", "AEP", "SRE", "D", "ED",
+    "PEG", "WEC", "EIX", "PPL", "FE", "ES", "AWK", "ATO", "CMS", "NI",
+    "NRG", "DTE", "LNT", "EVRG", "AES", "CNP", "PNW", "OGE", "AEE", "ETR",
+    "XEL", "NEE", "SO", "DUK", "D", "EXC", "AEP", "SRE", "ED", "ES",
+    "EIX", "PEG", "WEC", "FE", "PPL", "CMS", "AWK", "ATO", "NI", "NRG",
+    "DTE", "LNT", "EVRG", "AES", "CNP", "PNW", "OGE", "AEE", "ETR", "XEL"
+], start="2020-01-01", end="2025-01-01")
 df = df.reset_index()
 
 choose_stock = st.selectbox("Choose a stock:", [
-    "BRK-A", "SE", "MCD", "NVR", "ALB", "AMZN", "SHOP", "GOOGL", "GOOG",
-    "MCHP", "ILMN", "ISRG", "ADI", "AZO", "FIS", "LRCX", "MDLA", "NOW",
-    "RMD", "SNPS", "VRTX", "XLNX", "YUM", "ZBRA", "ZS", "NFLX", "TSLA",
-    "AMGN", "BIIB", "COST", "CSX", "DE", "DHR", "FISV", "GILD", "HCA",
-    "HOLX", "KHC", "KSU", "LHX", "MCK", "MKTX", "MNST", "MRVL", "MU",
-    "NXPI", "PAYX", "PCAR", "PYPL", "REGN", "SBUX", "SNOW", "SPLK",
-    "TFX", "VRSK", "WBA", "ZTS"])
+    "AAPL", "MSFT", "AMZN", "GOOGL", "GOOG", "META", "BRK.B", "TSLA", "NVDA", "JPM",
+    "JNJ", "V", "UNH", "HD", "PG", "MA", "BAC", "XOM", "DIS", "PFE",
+    "KO", "PEP", "CSCO", "VZ", "ADBE", "CMCSA", "NFLX", "INTC", "T", "MRK",
+    "WMT", "CVX", "ABT", "CRM", "NKE", "LLY", "ACN", "AVGO", "MDT", "COST",
+    "ABBV", "TMO", "DHR", "MCD", "TXN", "NEE", "PM", "UNP", "LIN", "ORCL",
+    "HON", "UPS", "MS", "AMGN", "IBM", "QCOM", "LOW", "RTX", "INTU", "BA",
+    "SBUX", "CAT", "GS", "BLK", "ISRG", "MDLZ", "AMT", "GE", "NOW", "SPGI",
+    "LMT", "DE", "PLD", "CVS", "BKNG", "AXP", "GILD", "ADI", "ZTS", "SYK",
+    "CI", "MO", "ADP", "TGT", "USB", "CB", "BDX", "C", "PNC", "SCHW",
+    "DUK", "SO", "MMC", "TJX", "APD", "FIS", "CL", "ICE", "GM", "ETN",
+    "EL", "ECL", "ITW", "ADI", "VRTX", "CSX", "NSC", "SHW", "EMR", "AON",
+    "GD", "FDX", "ADI", "EW", "PSA", "HUM", "ADSK", "ROP", "AIG", "COF",
+    "TFC", "NOC", "KLAC", "MCO", "CDNS", "FISV", "HCA", "MAR", "IDXX", "ROST",
+    "CTSH", "KMB", "WELL", "EXC", "STZ", "TRV", "AEP", "SRE", "D", "ED",
+    "PEG", "WEC", "EIX", "PPL", "FE", "ES", "AWK", "ATO", "CMS", "NI",
+    "NRG", "DTE", "LNT", "EVRG", "AES", "CNP", "PNW", "OGE", "AEE", "ETR",
+    "XEL", "NEE", "SO", "DUK", "D", "EXC", "AEP", "SRE", "ED", "ES",
+    "EIX", "PEG", "WEC", "FE", "PPL", "CMS", "AWK", "ATO", "NI", "NRG",
+    "DTE", "LNT", "EVRG", "AES", "CNP", "PNW", "OGE", "AEE", "ETR", "XEL"
+])
 
 ticker_info = yf.Ticker(choose_stock).info
 long_name = ticker_info.get("longName", choose_stock)
