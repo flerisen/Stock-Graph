@@ -26,11 +26,15 @@ choose_stock = st.selectbox("Choose a stock:", [
     "NXPI", "PAYX", "PCAR", "PYPL", "REGN", "SBUX", "SNOW", "SPLK",
     "TFX", "VRSK", "WBA", "ZTS"])
 
+ticker_info = yf.Ticker(choose_stock).info
+long_name = ticker_info.get("longName", choose_stock)
+
 if choose_stock:
 
     chart_data = pd.DataFrame({
         "challenge_id": st.number_input("Input a challenge_id", value=0),
         "Stock": [choose_stock] * len(df),
+        "Stock Name": [long_name] * len(df),
         "Price": df["Close"][choose_stock].round(2),
         "Volume": df["Volume"][choose_stock],
         "Date": df["Date"].dt.date
