@@ -17,7 +17,7 @@ df = yf.download([
     "TFX", "VRSK", "WBA", "ZTS"], start="2020-01-01", end="2025-01-01")
 df = df.reset_index()
 
-choose_stock = st.multiselect("Choose a stock:", [
+choose_stock = st.selectbox("Choose a stock:", [
     "BRK-A", "SE", "MCD", "NVR", "ALB", "AMZN", "SHOP", "GOOGL", "GOOG",
     "MCHP", "ILMN", "ISRG", "ADI", "AZO", "FIS", "LRCX", "MDLA", "NOW",
     "RMD", "SNPS", "VRTX", "XLNX", "YUM", "ZBRA", "ZS", "NFLX", "TSLA",
