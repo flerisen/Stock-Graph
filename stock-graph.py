@@ -26,8 +26,8 @@ choose_stock = st.selectbox("Choose a stock:", [
     "NXPI", "PAYX", "PCAR", "PYPL", "REGN", "SBUX", "SNOW", "SPLK",
     "TFX", "VRSK", "WBA", "ZTS"])
 
-    ticker_info = yf.Ticker(choose_stock).info
-    long_name = ticker_info.get("longName", choose_stock)
+ticker_info = yf.Ticker(choose_stock).info
+long_name = ticker_info.get("longName", choose_stock)
 
 if choose_stock:
     chart_data = pd.DataFrame({
