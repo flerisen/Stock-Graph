@@ -57,7 +57,7 @@ if choose_stock:
         "type": ["Stock"] * len(df),
         "challenge_id": st.number_input("Input a challenge_id", value=0),
         "Name": [choose_stock] * len(df),
-        "long_name": [long_name] * len(df),
+        "long_name": ["longName"] * len(df),
         "Price": df["Close"][choose_stock].round(2),
         "Volume": df["Volume"][choose_stock],
         "Date": df["Date"].dt.date
