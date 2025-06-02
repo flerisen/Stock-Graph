@@ -522,4 +522,4 @@ draggable_line['Random Volume'] = draggable_line['Random Volume'].round(2)
 draggable_line = draggable_line.drop(columns=["Random Price_updated", "Random Volume_updated"])
 
 # Show the updated daily data with smooth prices and volumes
-st.dataframe(draggable_line[["type", "challenge_id","Name", "Random Price", "Random Volume", "Date"]])
+st.dataframe(draggable_line[["type", "challenge_id", "Name", "long_name", "Random Price", "Random Volume", "Date"]])
