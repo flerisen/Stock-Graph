@@ -8,11 +8,11 @@ from draggable_charts import line_chart
 st.title("Global Stock Market Price History")
 
 df = yf.download([
-    "AAPL", "MSFT", "AMZN"], start="2020-01-01", end="2025-01-01")
+    "AAPL"], start="2020-01-01", end="2025-01-01")
 df = df.reset_index()
 
 choose_stock = st.selectbox("Choose a stock:", [
-    "AAPL", "MSFT", "AMZN"])
+    "AAPL"])
 
 ticker_info = yf.Ticker(choose_stock).info
 long_name = ticker_info.get("longName", choose_stock)
