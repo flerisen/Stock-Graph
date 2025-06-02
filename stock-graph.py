@@ -17,7 +17,7 @@ df = yf.download([
     "TFX", "VRSK", "WBA", "ZTS"], start="2020-01-01", end="2025-01-01")
 df = df.reset_index()
 
-choose_stock = st.selectbox("Choose a stock:", [
+choose_stock = st.multiselect("Choose a stock:", [
     "BRK-A", "SE", "MCD", "NVR", "ALB", "AMZN", "SHOP", "GOOGL", "GOOG",
     "MCHP", "ILMN", "ISRG", "ADI", "AZO", "FIS", "LRCX", "MDLA", "NOW",
     "RMD", "SNPS", "VRTX", "XLNX", "YUM", "ZBRA", "ZS", "NFLX", "TSLA",
@@ -30,7 +30,10 @@ ticker_info = yf.Ticker(choose_stock).info
 long_name = ticker_info.get("longName", choose_stock)
 
 if choose_stock:
-
+    for stock in choose_stock:
+        info = yf.Ticker(stock).info
+        long_name = info.get("longName")
+        
     chart_data = pd.DataFrame({
         "type": ["Stock"] * len(df),
         "challenge_id": st.number_input("Input a challenge_id", value=0),
