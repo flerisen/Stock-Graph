@@ -49,8 +49,7 @@ choose_stock = st.selectbox("Choose a stock:", tickers)
 df = yf.download(choose_stock, start="2020-01-01", end="2025-01-01")
 df = df.reset_index()
 
-ticker_info = yf.Ticker(choose_stock).info
-long_name = ticker_info.get("longName", choose_stock)
+long_name = yf.Ticker(choose_stock).info.get("longName", choose_stock)
 
 if choose_stock:
     chart_data = pd.DataFrame({
