@@ -22,27 +22,7 @@ df = yf.download([
     "PGR", "FISV", "CME", "TRV", "MET", "AEP", "PSA", "SHW", "ICE", "MCO",
     "D", "EMR", "ROST", "ECL", "AIG", "MAR", "MPC", "ALL", "ORLY", "KMB",
     "STZ", "SRE", "WELL", "HCA", "CTAS", "LRCX", "IDXX", "NOC", "WMB", "CMG",
-    "ADSK", "NEM", "DLR", "O", "AFL", "TEL", "CDNS", "PCAR", "SPG", "PH",
-    "VLO", "FTNT", "PSX", "MNST", "CTSH", "KLAC", "ROP", "KHC", "EXC", "PAYX",
-    "HPQ", "MSI", "BAX", "WEC", "AZO", "HES", "PRU", "MCK", "VRSK", "DOW",
-    "PEG", "SYY", "DG", "WBA", "CMI", "MTD", "TT", "CHD", "XYL", "ZBH",
-    "ED", "NUE", "CNC", "KEYS", "WST", "AMP", "HAL", "ANET", "AVB", "FTV",
-    "F", "PPG", "STT", "RSG", "DLTR", "MLM", "TSCO", "LEN", "EIX", "CARR",
-    "FAST", "GWW", "VFC", "IFF", "BKR", "A", "HIG", "CTVA", "DHI", "HOLX",
-    "AKAM", "ALB", "PPL", "DTE", "ETR", "LUV", "VTR", "EXR", "CNP", "NTRS",
-    "ES", "NTAP", "CMS", "HPE", "FMC", "DRI", "EFX", "AEE", "WAT", "NDAQ",
-    "ZBRA", "ATO", "SWK", "EQR", "MTB", "GLW", "NVR", "HBAN", "RMD", "PWR",
-    "TSN", "VMC", "KMI", "GRMN", "LHX", "STX", "DOV", "SJM", "MKC", "ARE",
-    "ALGN", "CHRW", "KDP", "GPC", "BXP", "NDSN", "JKHY", "ESS", "UDR", "PKI",
-    "INCY", "CINF", "COO", "BHF", "FRC", "PKG", "MAS", "AIZ", "CF", "HII",
-    "L", "WRB", "NRG", "BBY", "AVY", "CE", "TYL", "EXPD", "IP", "HWM",
-    "ROL", "OMC", "NWL", "LKQ", "WHR", "XRAY", "MOS", "APA", "UHS", "CAG",
-    "EMN", "DVA", "AAL", "TPR", "NCLH", "ALLE", "FRT", "HAS", "SEE", "BEN",
-    "IVZ", "RL", "DXC", "NLSN", "FLIR", "HRB", "TAP", "NWSA", "NWS", "PVH",
-    "LB", "FOX", "FOXA", "HBI", "MHK", "LEG", "DISCA", "DISCK", "KSS", "GPS",
-    "JWN", "UA", "UAA", "ADS", "CPB", "NBL", "HFC", "NOV", "CXO", "DVN",
-    "MRO", "OKE", "XEC", "COG", "FANG", "PXD", "EQT", "SWN", "RRC", "AR",
-    "CNX", "SM", "CPE", "MTDR", "CRK", "PDCE", "LPI", "OXY", "CLR", "WLL"
+    "ADSK", "NEM", "DLR", "O", "AFL", "TEL", "CDNS", "PCAR", "SPG", "PH"
 ], start="2020-01-01", end="2025-01-01")
 df = df.reset_index()
 
@@ -61,28 +41,7 @@ choose_stock = st.selectbox("Choose a stock:", [
     "PGR", "FISV", "CME", "TRV", "MET", "AEP", "PSA", "SHW", "ICE", "MCO",
     "D", "EMR", "ROST", "ECL", "AIG", "MAR", "MPC", "ALL", "ORLY", "KMB",
     "STZ", "SRE", "WELL", "HCA", "CTAS", "LRCX", "IDXX", "NOC", "WMB", "CMG",
-    "ADSK", "NEM", "DLR", "O", "AFL", "TEL", "CDNS", "PCAR", "SPG", "PH",
-    "VLO", "FTNT", "PSX", "MNST", "CTSH", "KLAC", "ROP", "KHC", "EXC", "PAYX",
-    "HPQ", "MSI", "BAX", "WEC", "AZO", "HES", "PRU", "MCK", "VRSK", "DOW",
-    "PEG", "SYY", "DG", "WBA", "CMI", "MTD", "TT", "CHD", "XYL", "ZBH",
-    "ED", "NUE", "CNC", "KEYS", "WST", "AMP", "HAL", "ANET", "AVB", "FTV",
-    "F", "PPG", "STT", "RSG", "DLTR", "MLM", "TSCO", "LEN", "EIX", "CARR",
-    "FAST", "GWW", "VFC", "IFF", "BKR", "A", "HIG", "CTVA", "DHI", "HOLX",
-    "AKAM", "ALB", "PPL", "DTE", "ETR", "LUV", "VTR", "EXR", "CNP", "NTRS",
-    "ES", "NTAP", "CMS", "HPE", "FMC", "DRI", "EFX", "AEE", "WAT", "NDAQ",
-    "ZBRA", "ATO", "SWK", "EQR", "MTB", "GLW", "NVR", "HBAN", "RMD", "PWR",
-    "TSN", "VMC", "KMI", "GRMN", "LHX", "STX", "DOV", "SJM", "MKC", "ARE",
-    "ALGN", "CHRW", "KDP", "GPC", "BXP", "NDSN", "JKHY", "ESS", "UDR", "PKI",
-    "INCY", "CINF", "COO", "BHF", "FRC", "PKG", "MAS", "AIZ", "CF", "HII",
-    "L", "WRB", "NRG", "BBY", "AVY", "CE", "TYL", "EXPD", "IP", "HWM",
-    "ROL", "OMC", "NWL", "LKQ", "WHR", "XRAY", "MOS", "APA", "UHS", "CAG",
-    "EMN", "DVA", "AAL", "TPR", "NCLH", "ALLE", "FRT", "HAS", "SEE", "BEN",
-    "IVZ", "RL", "DXC", "NLSN", "FLIR", "HRB", "TAP", "NWSA", "NWS", "PVH",
-    "LB", "FOX", "FOXA", "HBI", "MHK", "LEG", "DISCA", "DISCK", "KSS", "GPS",
-    "JWN", "UA", "UAA", "ADS", "CPB", "NBL", "HFC", "NOV", "CXO", "DVN",
-    "MRO", "OKE", "XEC", "COG", "FANG", "PXD", "EQT", "SWN", "RRC", "AR",
-    "CNX", "SM", "CPE", "MTDR", "CRK", "PDCE", "LPI", "OXY", "CLR", "WLL"
-])
+    "ADSK", "NEM", "DLR", "O", "AFL", "TEL", "CDNS", "PCAR", "SPG", "PH"])
 
 ticker_info = yf.Ticker(choose_stock).info
 long_name = ticker_info.get("longName", choose_stock)
