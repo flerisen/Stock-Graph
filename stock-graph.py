@@ -8,40 +8,11 @@ from draggable_charts import line_chart
 st.title("Global Stock Market Price History")
 
 df = yf.download([
-    "AAPL", "MSFT", "AMZN", "NVDA", "GOOGL", "GOOG", "META", "BRK.B", "TSLA", "UNH",
-    "LLY", "JPM", "XOM", "JNJ", "V", "PG", "AVGO", "MA", "HD", "CVX",
-    "KO", "PEP", "WMT", "BAC", "CSCO", "ADBE", "CMCSA", "NFLX", "ABT", "CRM",
-    "ORCL", "MRK", "TMO", "INTC", "ACN", "COST", "MCD", "DHR", "AMD", "NEE",
-    "DIS", "IBM", "TXN", "LIN", "PM", "NKE", "QCOM", "AMGN", "HON", "UNP",
-    "MDT", "GE", "UPS", "LOW", "SBUX", "CAT", "GS", "INTU", "BLK", "ISRG",
-    "CVS", "MS", "AMAT", "CI", "VRTX", "BA", "DE", "NOW", "LMT", "ADI",
-    "T", "SYK", "ZTS", "PFE", "SPGI", "MO", "PLD", "ELV", "EL", "BDX",
-    "BKNG", "MMC", "SO", "GILD", "AXP", "ADP", "C", "TJX", "REGN", "CL",
-    "DUK", "BSX", "FDX", "APD", "ETN", "PNC", "EOG", "GM", "ITW", "CB",
-    "USB", "FIS", "WM", "SCHW", "NSC", "EW", "TGT", "AON", "MDLZ", "HUM",
-    "PGR", "FISV", "CME", "TRV", "MET", "AEP", "PSA", "SHW", "ICE", "MCO",
-    "D", "EMR", "ROST", "ECL", "AIG", "MAR", "MPC", "ALL", "ORLY", "KMB",
-    "STZ", "SRE", "WELL", "HCA", "CTAS", "LRCX", "IDXX", "NOC", "WMB", "CMG",
-    "ADSK", "NEM", "DLR", "O", "AFL", "TEL", "CDNS", "PCAR", "SPG", "PH"
-], start="2020-01-01", end="2025-01-01")
+    "AAPL", "MSFT", "AMZN"], start="2020-01-01", end="2025-01-01")
 df = df.reset_index()
 
 choose_stock = st.selectbox("Choose a stock:", [
-    "AAPL", "MSFT", "AMZN", "NVDA", "GOOGL", "GOOG", "META", "BRK.B", "TSLA", "UNH",
-    "LLY", "JPM", "XOM", "JNJ", "V", "PG", "AVGO", "MA", "HD", "CVX",
-    "KO", "PEP", "WMT", "BAC", "CSCO", "ADBE", "CMCSA", "NFLX", "ABT", "CRM",
-    "ORCL", "MRK", "TMO", "INTC", "ACN", "COST", "MCD", "DHR", "AMD", "NEE",
-    "DIS", "IBM", "TXN", "LIN", "PM", "NKE", "QCOM", "AMGN", "HON", "UNP",
-    "MDT", "GE", "UPS", "LOW", "SBUX", "CAT", "GS", "INTU", "BLK", "ISRG",
-    "CVS", "MS", "AMAT", "CI", "VRTX", "BA", "DE", "NOW", "LMT", "ADI",
-    "T", "SYK", "ZTS", "PFE", "SPGI", "MO", "PLD", "ELV", "EL", "BDX",
-    "BKNG", "MMC", "SO", "GILD", "AXP", "ADP", "C", "TJX", "REGN", "CL",
-    "DUK", "BSX", "FDX", "APD", "ETN", "PNC", "EOG", "GM", "ITW", "CB",
-    "USB", "FIS", "WM", "SCHW", "NSC", "EW", "TGT", "AON", "MDLZ", "HUM",
-    "PGR", "FISV", "CME", "TRV", "MET", "AEP", "PSA", "SHW", "ICE", "MCO",
-    "D", "EMR", "ROST", "ECL", "AIG", "MAR", "MPC", "ALL", "ORLY", "KMB",
-    "STZ", "SRE", "WELL", "HCA", "CTAS", "LRCX", "IDXX", "NOC", "WMB", "CMG",
-    "ADSK", "NEM", "DLR", "O", "AFL", "TEL", "CDNS", "PCAR", "SPG", "PH"])
+    "AAPL", "MSFT", "AMZN"])
 
 ticker_info = yf.Ticker(choose_stock).info
 long_name = ticker_info.get("longName", choose_stock)
