@@ -46,29 +46,18 @@ tickers = [
 
 choose_stock = st.selectbox("Choose a stock:", tickers)
 
-url = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
-tables = pd.read_html(url)
-sp500_table = tables[0]
-ticker_to_name = dict(zip(sp500_table['Symbol'], sp500_table['Security']))
-df['Company Name'] = df['Symbol'].map(ticker_to_name)
-
-df_all = yf.download(tickers, start="2020-01-01", end="2025-01-01", group_by="ticker")
-df_all = df.reset_index()
-
-stock_df = df_all[choose_stock].copy()
-stock_df = stock_df.reset_index()
-stock_df['Symbol'] = choose_stock
-stock_df['long_name'] = ticker_to_name.get(choose_stock, "Unknown")
+df = yf.download(tickers, start="2020-01-01", end="2025-01-01")
+df = df.reset_index()
 
 if choose_stock:
     chart_data = pd.DataFrame({
-        "type": ["Stock"] * len(stock_df),
+        "type": ["Stock"] * len(df),
         "challenge_id": st.number_input("Input a challenge_id", value=0),
-        "Name": [choose_stock] * len(stock_df),
-        "long_name": [ticker_to_name.get(choose_stock, "Unknown")] * len(stock_df),
-        "Price": stock_df["Close"][choose_stock].round(2),
-        "Volume": stock_df["Volume"][choose_stock],
-        "Date": stock_df["Date"].dt.date
+        "Name": [choose_stock] * len(df),
+        "long_name": [ticker_to_name.get(choose_stock, "Unknown")] * len(df),
+        "Price": df["Close"][choose_stock].round(2),
+        "Volume": df["Volume"][choose_stock],
+        "Date": df["Date"].dt.date
     })
     
     st.subheader("Global Stock Graph 1-1")
