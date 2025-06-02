@@ -46,7 +46,7 @@ tickers = [
 
 choose_stock = st.selectbox("Choose a stock:", tickers)
 
-df = yf.download(tickers, start="2020-01-01", end="2025-01-01")
+df = yf.download(choose_stock, start="2020-01-01", end="2025-01-01")
 df = df.reset_index()
 
 ticker_info = yf.Ticker(choose_stock).info
