@@ -49,12 +49,15 @@ choose_stock = st.selectbox("Choose a stock:", tickers)
 df = yf.download(tickers, start="2020-01-01", end="2025-01-01")
 df = df.reset_index()
 
+ticker_info = yf.Ticker(choose_stock).info
+long_name = ticker_info.get("longName", choose_stock)
+
 if choose_stock:
     chart_data = pd.DataFrame({
         "type": ["Stock"] * len(df),
         "challenge_id": st.number_input("Input a challenge_id", value=0),
         "Name": [choose_stock] * len(df),
-        "long_name": [ticker_to_name.get(choose_stock, "Unknown")] * len(df),
+        "long_name": [long_name],
         "Price": df["Close"][choose_stock].round(2),
         "Volume": df["Volume"][choose_stock],
         "Date": df["Date"].dt.date
