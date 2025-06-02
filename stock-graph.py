@@ -14,8 +14,10 @@ df = df.reset_index()
 choose_stock = st.selectbox("Choose a stock:", [
     "AAPL", "MSFT", "AMZN", "NVDA", "GOOG", "TSLA", "NFLX"])
 
-ticker_info = yf.Ticker(choose_stock).info
-long_name = ticker_info.get("longName", choose_stock)
+try:
+    long_name = yf.Ticker(choose_stock).info.get("longName", choose_stock)
+except Exception:
+    long_name = choose_stock
 
 if choose_stock:
     chart_data = pd.DataFrame({
