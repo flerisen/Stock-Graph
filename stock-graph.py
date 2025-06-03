@@ -529,7 +529,6 @@ draggable_line['open'] = draggable_line['open'].round(2)
 draggable_line['high'] = draggable_line['high'].round(2)
 draggable_line['low'] = draggable_line['low'].round(2)
 draggable_line['close'] = draggable_line['close'].round(2)
-draggable_line['Volume'] = draggable_line['Volume']
 
 # Drop helper columns
 draggable_line = draggable_line.drop(columns=["Random Price_updated", "Random Volume_updated"])
