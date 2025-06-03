@@ -520,11 +520,15 @@ draggable_line.loc[:, 'Random Price'] = interpolated_prices
 draggable_line.loc[:, 'Random Volume'] = interpolated_volumes
 draggable_line['Random Price'] = draggable_line['Random Price'].round(2)
 draggable_line['Random Volume'] = draggable_line['Random Volume'].round(2)
-draggable_line['Random Price'] = draggable_line['open'].round(2)
-draggable_line['Random Price'] = draggable_line['high'].round(2)
-draggable_line['Random Price'] = draggable_line['low'].round(2)
-draggable_line['Random Price'] = draggable_line['close'].round(2)
-draggable_line['Random Volume'] = draggable_line['Volume'].round(2)
+draggable_line['open'] = interpolated_prices
+draggable_line['high'] = interpolated_prices
+draggable_line['low'] = interpolated_prices
+draggable_line['close'] = interpolated_prices
+draggable_line['Volume'] = interpolated_volumes
+draggable_line['open'] = draggable_line['open'].round(2)
+draggable_line['high'] = draggable_line['high'].round(2)
+draggable_line['low'] = draggable_line['low'].round(2)
+draggable_line['close'] = draggable_line['close'].round(2)
 
 # Drop helper columns
 draggable_line = draggable_line.drop(columns=["Random Price_updated", "Random Volume_updated"])
