@@ -423,7 +423,7 @@ if choose_stock:
 
     new_row_global = pd.DataFrame({
         "Stock": [choose_stock],
-        "Price": [None],
+        "close": [None],
         "Volume": [None],
         "Date": [None]
     })
@@ -441,7 +441,7 @@ if stock_randomizer != 0:
     noise = np.random.normal(loc=1.0, scale=0.01, size=len(chart_data))
 
     chart_data["Random Price"] = (
-        chart_data["Price"] * price_multiplier * noise
+        chart_data["close"] * price_multiplier * noise
     ).round(2)
 
     chart_data["Random Volume"] = (
