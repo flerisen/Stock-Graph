@@ -408,9 +408,9 @@ if choose_stock:
         "challenge_id": st.number_input("Input a challenge_id", value=0),
         "long_name": [long_names.get(choose_stock, choose_stock)] * len(df),
         "Name": [choose_stock] * len(df),
-        "open": df["Open"][choose_stock].round(2),
-        "high": df["High"][choose_stock].round(2),
-        "low": df["Low"][choose_stock].round(2),
+        "open": df["Close"][choose_stock].round(2),
+        "high": df["Close"][choose_stock].round(2),
+        "low": df["Close"][choose_stock].round(2),
         "close": df["Close"][choose_stock].round(2),
         "Volume": df["Volume"][choose_stock],
         "Date": df["Date"].dt.date
