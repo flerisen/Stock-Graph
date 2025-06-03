@@ -418,7 +418,7 @@ if choose_stock:
     
     st.subheader("Global Stock Graph 1-1")
 
-    st.line_chart(chart_data.set_index("Date")["Price"])
+    st.line_chart(chart_data.set_index("Date")["close"])
     st.dataframe(chart_data[["challenge_id", "Name", "long_name", "type", "Date", "open", "high", "low", "close", "Volume"]])
 
     new_row_global = pd.DataFrame({
