@@ -520,9 +520,16 @@ draggable_line.loc[:, 'Random Price'] = interpolated_prices
 draggable_line.loc[:, 'Random Volume'] = interpolated_volumes
 draggable_line['Random Price'] = draggable_line['Random Price'].round(2)
 draggable_line['Random Volume'] = draggable_line['Random Volume'].round(2)
+draggable_line['Random Price'] = draggable_line['open'].round(2)
+draggable_line['Random Price'] = draggable_line['high'].round(2)
+draggable_line['Random Price'] = draggable_line['low'].round(2)
+draggable_line['Random Price'] = draggable_line['close'].round(2)
+draggable_line['Random Volume'] = draggable_line['Volume'].round(2)
 
 # Drop helper columns
 draggable_line = draggable_line.drop(columns=["Random Price_updated", "Random Volume_updated"])
 
 # Show the updated daily data with smooth prices and volumes
 st.dataframe(draggable_line[["type", "challenge_id", "Name", "long_name", "Random Price", "Random Volume", "Date"]])
+st.dataframe(draggable_line[["challenge_id", "Name", "long_name", "type", "Date", "open", "high", "low", "close", "Volume"]])
+
