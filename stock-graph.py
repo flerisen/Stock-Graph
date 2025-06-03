@@ -408,7 +408,10 @@ if choose_stock:
         "challenge_id": st.number_input("Input a challenge_id", value=0),
         "long_name": [long_names.get(choose_stock, choose_stock)] * len(df),
         "Name": [choose_stock] * len(df),
-        "Price": df["Close"][choose_stock].round(2),
+        "open": df["Open"][choose_stock].round(2),
+        "high": df["High"][choose_stock].round(2),
+        "low": df["Low"][choose_stock].round(2),
+        "close": df["Close"][choose_stock].round(2),
         "Volume": df["Volume"][choose_stock],
         "Date": df["Date"].dt.date
     })
@@ -416,7 +419,7 @@ if choose_stock:
     st.subheader("Global Stock Graph 1-1")
 
     st.line_chart(chart_data.set_index("Date")["Price"])
-    st.dataframe(chart_data[["type", "challenge_id","Name","long_name", "Price", "Volume", "Date"]])
+    st.dataframe(chart_data[["challenge_id", "Name", "long_name", "type", "Date", "open", "high", "low", "close", "Volume"]])
 
     new_row_global = pd.DataFrame({
         "Stock": [choose_stock],
